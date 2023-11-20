@@ -7,3 +7,12 @@ export type Message = {
     //  userID: string,
     type: MessageType
 }
+
+export interface FontFamilies {
+    montserrat: string;
+    poppins: string;
+    raleway: string;
+    roboto: string;
+    inter: string;
+    openSans: string;
+}

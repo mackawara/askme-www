@@ -1,7 +1,6 @@
 import React from 'react'
-import { Container, Grid } from '@mui/material'
-import { useState } from 'react'
-import { Message, MessageType } from '../../types'
+import { Grid } from '@mui/material'
+import { Message } from '../../types'
 import MessageComponent from './message'
 
 interface MessageHistory {
@@ -9,7 +8,7 @@ interface MessageHistory {
 }
 
 const MessageHistory: React.FC<MessageHistory> = ({ messageList }) => {
-    return (<Grid container sx={{ height: 'auto' }}>
+    return (<Grid container sx={{ flexBasis: '90%', overflow: 'scroll' }}>
         {messageList.map((item, index) => {
             return (
                 <MessageComponent key={index} type={item.type} content={item.content} />

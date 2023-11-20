@@ -15,20 +15,21 @@ import { colors } from '../../constants/colors';
 
 const UserInputBox = ({ onDataUpdate, isLoading }) => {
 
-    const { register, handleSubmit } = useForm<IFormInput>()
+    const { register, reset, handleSubmit } = useForm<IFormInput>()
     const onSubmit: SubmitHandler<Message> = (data) => {
         onDataUpdate(data)
+        reset()
     }
 
     return (
-        <Container sx={{ width: '100%', alignSelf: 'flex-end', maxWidth: 'none', margin: '2em 0 0', padding: '0', border: '1px solid red', position: 'absolute', bottom: '9px' }}>
+        <Container sx={{ width: '100%', maxWidth: 'none', margin: '2em 0 0', padding: '0', position: 'absolute', bottom: '5%' }}>
             <form onSubmit={handleSubmit(onSubmit)} >
-                <Grid container sx={{ width: '100%', height: 'auto', alignItems: 'center', margin: 0, padding: 0 }}>
+                <Grid container sx={{ width: '100%', display: 'flex', zIndex: 100, height: 'content', alignItems: 'center', margin: 0, padding: 0 }}>
                     <Grid item xs={11}>
-                        <TextField id="outlined-basic" fullWidth={true} sx={{ backgroundColor: colors.lightBackground, margin: 0, padding: 0 }} label="Type your message here" variant="outlined"  {...register("content")} />
+                        <TextField id="outlined-multiline-flexible" fullWidth={true} sx={{ backgroundColor: colors.lightBackground, margin: 0, borderRadius: '2vh', padding: 0 }} label="Type your message here"  {...register("content")} />
                     </Grid>
-                    <Grid item xs={1} sx={{ verticalAlign: 'middle', height: 'auto', margin: 0, padding: 0 }}>
-                        <Button varaint="outlined" disabled={isLoading} type='submit' sx={{ color: colors.color, padding: 0, margin: 0 }} endIcon={<SendIcon />} ></Button>
+                    <Grid item xs={1} sx={{ height: 'auto', margin: 0, padding: 0, alignItems: 'flex-start' }}>
+                        <Button disabled={isLoading} type='submit' sx={{ color: colors.color, padding: 0, margin: 0, alignSelf: 'flex-start' }} endIcon={<SendIcon />} ></Button>
                     </Grid>
                 </Grid>
 

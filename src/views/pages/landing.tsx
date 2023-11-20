@@ -16,7 +16,6 @@ const LandingPage = () => {
     const [isLoading, setLoading] = useState<boolean>(false)
     const [messageHistory, setMessageHistory] = useState<Message[]>([])
     const getAiResponse = async (message: Message): Promise<Message> => {
-        console.log(message)
         try {
             const headers = {
                 'Content-Type': 'application/json',
@@ -29,8 +28,6 @@ const LandingPage = () => {
                 data: message,
                 headers: headers
             })
-            console.log(response.data.message)
-
             //return { content: response.data.message, type: 'system' }
             setLoading(false)
             setMessageHistory([...messageHistory, { content: response.data.message, type: 'system' }])
@@ -42,10 +39,10 @@ const LandingPage = () => {
         }
     }
     const handleMessages = async (input: Message) => {
+        console.log(input)
         setLoading(true)
         setMessage(input)
         setMessageHistory([...messageHistory, input])
-
     }
     console.log("this is message line6" + message?.content)
     useEffect(() => {
@@ -64,7 +61,7 @@ const LandingPage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [message])
 
-    return (<Container sx={{ backgroundColor: colors.background, overflow: 'scroll', height: '100vh', padding: 0, border: `1px solid ${colors.border}` }} >
+    return (<Container sx={{ backgroundColor: colors.background, height: '100vh', overflow: 'hidden', display: 'flex', flexBasis: '80%', flexDirection: 'column', padding: '0 0 0 0' }} >
         <MessageHistory messageList={messageHistory} />
         <UserInputBox onDataUpdate={handleMessages} isLoading={isLoading} />
     </Container>)
